@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery | Desert Elite Homes & Construction</title>
+  <meta name="description" content="Browse completed projects by Desert Elite Homes and Construction, custom homes, renovations, kitchens, and more across Scottsdale, Cave Creek, Carefree, Phoenix, and the Greater Area.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Desert Elite Homes &amp; Construction">
+  <meta property="og:title" content="Gallery | Desert Elite Homes &amp; Construction">
+  <meta property="og:description" content="Browse completed projects by Desert Elite Homes and Construction: custom homes, renovations, kitchens, and more across Scottsdale, Cave Creek, Carefree, Phoenix, and the Greater Area.">
+  <meta property="og:url" content="https://www.desertelitehomesandconstruction.com/projects.html">
+  <meta property="og:image" content="https://www.desertelitehomesandconstruction.com/images/new-sunset-home.jpg">
+  <meta property="og:image:width" content="1472">
+  <meta property="og:image:height" content="704">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Gallery | Desert Elite Homes &amp; Construction">
+  <meta name="twitter:description" content="Browse completed projects by Desert Elite Homes and Construction across Scottsdale, Cave Creek, Carefree, Phoenix, and the Greater Area.">
+  <meta name="twitter:image" content="https://www.desertelitehomesandconstruction.com/images/new-sunset-home.jpg">
+</head>
+<body>
+
+  <header class="site-header">
+  <!-- ── Navigation ─────────────────────────────────────── -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <img src="images/logo-white.png" alt="Desert Elite Homes &amp; Construction" class="nav__logo-img" />
+      </a>
+      <ul class="nav__links">
+        <li><a href="index.html" class="nav__link">Home</a></li>
+        <li><a href="about.html" class="nav__link">About</a></li>
+        <li><a href="services.html" class="nav__link">Services</a></li>
+        <li><a href="projects.html" class="nav__link active">Gallery</a></li>
+        <li><a href="contact.html" class="nav__link">Contact</a></li>
+      </ul>
+      <a href="contact.html" class="btn btn-primary nav__cta">Get a Free Quote</a>
+      <button class="nav__burger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="nav__mobile">
+    <button class="nav__mobile-close" aria-label="Close menu">&times;</button>
+    <a href="index.html" class="nav__mobile-link">Home</a>
+    <a href="about.html" class="nav__mobile-link">About</a>
+    <a href="services.html" class="nav__mobile-link">Services</a>
+    <a href="projects.html" class="nav__mobile-link">Gallery</a>
+    <a href="contact.html" class="nav__mobile-link">Contact</a>
+    <a href="contact.html" class="btn btn-primary nav__mobile-cta">Get a Free Quote</a>
+  </div>
+  </header>
+
+  <main>
+  <!-- ── Page Hero ───────────────────────────────────────── -->
+  <section class="page-hero page-hero--projects">
+    <div class="page-hero__inner">
+      <span class="eyebrow">Portfolio</span>
+      <h1 class="page-hero__title">Work We're <span>Proud Of</span></h1>
+      <p class="page-hero__sub">Every project tells a story. Here's a look at what Desert Elite has built across Scottsdale, Cave Creek, Carefree, Phoenix, and the Greater Area.</p>
+    </div>
+  </section>
+
+  <!-- ── Gallery ─────────────────────────────────────────── -->
+  <section class="section section--dark">
+    <div class="container">
+
+      <!-- Filter Bar -->
+      <div class="filter-bar reveal">
+        <button class="filter-btn active" data-filter="all">All Projects</button>
+        <button class="filter-btn" data-filter="custom">Custom Homes</button>
+        <button class="filter-btn" data-filter="renovation">Renovations</button>
+        <button class="filter-btn" data-filter="kitchen">Kitchen &amp; Bath</button>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="gallery-grid reveal">
+
+        <!-- Kitchen: cols 5-6, row 1 -->
+        <div class="gallery-item gallery-item--hero" data-category="kitchen">
+          <picture><source srcset="images/kitchen-remodel.webp" type="image/webp"><img class="gallery-item__photo obj-y-40" src="images/kitchen-remodel.jpg" alt="Kitchen remodel" width="1900" height="1347" loading="lazy"></picture>
+          <div class="gallery-item__hover">
+            <div class="gallery-item__hover-type">Kitchen &amp; Bath</div>
+            <div class="gallery-item__hover-title">Full Kitchen Transformation</div>
+            <i class="fas fa-expand-alt" aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <!-- Great Room, cols 5-6, row 2 -->
+        <div class="gallery-item gallery-item--side" data-category="custom">
+          <picture><source srcset="images/living-room-1.webp" type="image/webp"><img class="gallery-item__photo obj-y-30" src="images/living-room1.jpg" alt="Open-concept great room custom build" width="1900" height="1199" loading="lazy"></picture>
+          <div class="gallery-item__hover">
+            <div class="gallery-item__hover-type">Custom Home</div>
+            <div class="gallery-item__hover-title">Open-Concept Great Room Build</div>
+            <i class="fas fa-expand-alt" aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <!-- Outdoor living: fills cols 5-6, row 2 -->
+        <div class="gallery-item gallery-item--side" data-category="custom">
+          <picture><source srcset="images/outdoor-pool-night.webp" type="image/webp"><img class="gallery-item__photo obj-y-40" src="images/outdoor-pool-night.jpg" alt="Backyard pool and outdoor living space at dusk" width="1900" height="1258" loading="lazy"></picture>
+          <div class="gallery-item__hover">
+            <div class="gallery-item__hover-type">Custom Home</div>
+            <div class="gallery-item__hover-title">Backyard &amp; Pool</div>
+            <i class="fas fa-expand-alt" aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <!-- Hallway, cols 1-3, row 3 -->
+        <div class="gallery-item gallery-item--featured" data-category="renovation">
+          <picture><source srcset="images/dining-hallway.webp" type="image/webp"><img class="gallery-item__photo obj-y-35" src="images/dining-hallway.jpg" alt="Whole-home interior remodel" width="1900" height="1266" loading="lazy"></picture>
+          <div class="gallery-item__hover">
+            <div class="gallery-item__hover-type">Renovation</div>
+            <div class="gallery-item__hover-title">Whole-Home Interior Remodel</div>
+            <i class="fas fa-expand-alt" aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <!-- FEATURED: Fireplace, spans 2 cols (col 2-3, row 3) -->
+        <div class="gallery-item gallery-item--featured" data-category="renovation">
+          <picture><source srcset="images/fireplace.webp" type="image/webp"><img class="gallery-item__photo obj-y-22" src="images/fireplace.jpg" alt="Custom fireplace and living space" width="1900" height="1266" loading="lazy"></picture>
+          <div class="gallery-item__hover">
+            <div class="gallery-item__hover-type">Renovation</div>
+            <div class="gallery-item__hover-title">Custom Fireplace &amp; Living Space</div>
+            <i class="fas fa-expand-alt" aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <!-- FULL WIDTH: Sunset Home Exterior -->
+        <div class="gallery-item gallery-item--full" data-category="custom">
+          <picture><source srcset="images/new-sunset-home.webp" type="image/webp"><img class="gallery-item__photo obj-y-60" src="images/new-sunset-home.jpg" alt="Custom home exterior at sunset" width="1472" height="704" loading="lazy"></picture>
+          <div class="gallery-item__hover">
+            <div class="gallery-item__hover-type">Custom Home</div>
+            <div class="gallery-item__hover-title">Scottsdale Desert Estate</div>
+            <i class="fas fa-expand-alt" aria-hidden="true"></i>
+          </div>
+        </div>
+
+      </div>
+      <!-- /gallery-grid -->
+
+      <p class="reveal gallery-note">
+        More projects added regularly, check back soon or <a href="contact.html" class="gallery-note__link">ask us about our portfolio</a>.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ── CTA ─────────────────────────────────────────────── -->
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="cta-section__title reveal">Ready to Be Our <span>Next Project?</span></h2>
+      <p class="cta-section__sub reveal">Contact us for a free estimate and let's talk about what we can build for you.</p>
+      <div class="cta-section__row reveal">
+        <a href="contact.html" class="btn btn-primary"><i class="fas fa-comments" aria-hidden="true"></i> Get a Free Quote</a>
+        <a href="services.html" class="btn btn-outline"><i class="fas fa-list" aria-hidden="true"></i> View Services</a>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <!-- ── Footer ──────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <img src="images/logo-white.png" alt="Desert Elite Homes &amp; Construction" class="footer__logo-img" />
+          <p class="footer__about">Building refined desert homes with uncompromising craftsmanship, honest pricing, and a reputation built on referrals.</p>
+          <div class="footer__badges">
+            <span class="footer__badge">Licensed</span>
+            <span class="footer__badge">Bonded</span>
+            <span class="footer__badge">Insured</span>
+          </div>
+        </div>
+        <div>
+          <div class="footer__heading">Navigation</div>
+          <ul class="footer__links">
+            <li><a href="index.html" class="footer__link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Home</a></li>
+            <li><a href="about.html" class="footer__link"><i class="fas fa-chevron-right" aria-hidden="true"></i> About Us</a></li>
+            <li><a href="services.html" class="footer__link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Services</a></li>
+            <li><a href="projects.html" class="footer__link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Gallery</a></li>
+            <li><a href="contact.html" class="footer__link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__heading">Services</div>
+          <ul class="footer__links">
+            <li><a href="services.html#custom-home-building" class="footer__link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Custom Home Building</a></li>
+            <li><a href="services.html#renovations" class="footer__link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Renovations</a></li>
+            <li><a href="services.html#room-additions" class="footer__link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Room Additions</a></li>
+            <li><a href="services.html#kitchen-bath" class="footer__link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Kitchen &amp; Bath</a></li>
+            <li><a href="services.html#lot-land-development" class="footer__link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Lot &amp; Land Development</a></li>
+            <li><a href="services.html#project-management" class="footer__link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Project Management</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__heading">Contact</div>
+          <div class="footer__contact-item">
+            <i class="fas fa-location-dot" aria-hidden="true"></i>
+            <div class="footer__contact-value">Serving Scottsdale, Cave Creek, Carefree, Phoenix, and the Greater Area</div>
+          </div>
+          <div class="footer__contact-item">
+            <i class="fas fa-globe" aria-hidden="true"></i>
+            <a href="https://www.desertelitehomesandconstruction.com" target="_blank" rel="noopener" class="footer__contact-value">desertelitehomesandconstruction.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copy">&copy; 2026 Desert Elite Homes &amp; Construction. All rights reserved.</span>
+        <span class="footer__roc">AZ ROC: <span>353956</span></span>
+      </div>
+      <div class="studio-credit">Crafted by <a href="https://www.consolelogic.net" target="_blank" rel="noopener" class="studio-credit__brand">console.log(ic)</a></div>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button class="back-to-top" aria-label="Back to top">
+    <i class="fas fa-arrow-up" aria-hidden="true"></i>
+  </button>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
