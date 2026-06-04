@@ -1,0 +1,37 @@
+[build]
+  publish = "."
+
+# ── Security headers (every response) ─────────────────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# ── Caching ───────────────────────────────────────────────────
+# HTML/CSS/JS aren't fingerprinted, so always revalidate (ETag 304s are
+# cheap). This keeps edits going live immediately — no stale styles/scripts.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Images change rarely — cache 30 days for performance, but not "immutable"
+# so a re-uploaded photo (same filename) still refreshes within a month.
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
