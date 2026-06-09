@@ -1425,6 +1425,19 @@ a.studio-credit__brand:hover { color: var(--gold-400); }
   margin-top: 0.25rem;
 }
 
+/* Founder bio + awards */
+.founder-bio {
+  max-width: 70ch;
+  margin: 0 auto;
+}
+.founder-bio p {
+  font-size: 0.98rem;
+  line-height: 1.85;
+  color: var(--muted-light);
+}
+.founder-bio p + p { margin-top: 1.1rem; }
+.founder-highlights { margin-top: 3rem; }
+
 .about-img-block {
   position: relative;
 }
