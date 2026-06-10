@@ -40,7 +40,8 @@ A fast, accessible, fully responsive static website. No frameworks and no build 
 ├── js/
 │   └── main.js          # sticky nav, mobile menu, scroll reveal, counters,
 │                        # gallery filter + lightbox, contact form handling
-├── images/              # photography, logos, favicons (jpg/webp/png)
+├── images/              # photography, logos, favicons (jpg/webp/png/svg)
+├── brand/               # source logo kit (SVG/AI/PDF, color + white)
 └── netlify.toml         # security headers + caching rules
 ```
 
