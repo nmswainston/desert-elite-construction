@@ -218,7 +218,7 @@ ul { list-style: none; }
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
-  padding: 1rem 2rem;
+  padding: 0.75rem 2rem;
   transition: background 0.4s ease, backdrop-filter 0.4s ease;
   background: linear-gradient(to bottom, rgba(5,4,3,0.72) 0%, rgba(5,4,3,0.35) 60%, transparent 100%);
 }
@@ -241,10 +241,36 @@ ul { list-style: none; }
   display: flex;
   align-items: center;
   line-height: 1;
+  position: relative;
+  isolation: isolate;
+}
+/* Soft, blurred dark halo behind the logo so it stays readable over bright
+   areas of the hero photo (sits behind the logo, above the nav background) */
+.nav__logo::before {
+  content: '';
+  position: absolute;
+  inset: -0.6rem -1.75rem;
+  z-index: -1;
+  background: radial-gradient(ellipse at center, rgba(5,4,3,0.5) 0%, rgba(5,4,3,0.28) 45%, rgba(5,4,3,0) 72%);
+  filter: blur(10px);
+  pointer-events: none;
+}
+/* Extra pool of shade concentrated behind the small tagline row at the bottom */
+.nav__logo::after {
+  content: '';
+  position: absolute;
+  left: -1rem;
+  right: -1rem;
+  bottom: -0.15rem;
+  height: 32%;
+  z-index: -1;
+  background: radial-gradient(ellipse at center, rgba(5,4,3,0.55) 0%, rgba(5,4,3,0.25) 55%, rgba(5,4,3,0) 100%);
+  filter: blur(7px);
+  pointer-events: none;
 }
 /* Inverted logo keeps the original salmon and swaps dark lettering for light */
 .nav__logo-img {
-  height: 90px;
+  height: 100px;
   width: auto;
   filter: none;
   opacity: 1;
@@ -1027,11 +1053,12 @@ ul { list-style: none; }
   font-size: 1.05rem;
   color: var(--muted-light);
   margin-bottom: 2.5rem;
-  max-width: 46ch;
+  max-width: 58ch;
   margin-left: auto;
   margin-right: auto;
   position: relative;
   z-index: 1;
+  text-wrap: balance;
 }
 
 .cta-section__row {
@@ -1308,6 +1335,7 @@ a.studio-credit__brand:hover { color: var(--gold-400); }
   gap: 1.5px;
   background: var(--dark-600);
 }
+.feature-grid--2 { grid-template-columns: repeat(2, 1fr); }
 .feature-grid--3 { grid-template-columns: repeat(3, 1fr); }
 .feature-grid--4 { grid-template-columns: repeat(4, 1fr); }
 
@@ -1381,6 +1409,7 @@ a.studio-credit__brand:hover { color: var(--gold-400); }
   .feature-grid--4 { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 600px) {
+  .feature-grid--2,
   .feature-grid--3,
   .feature-grid--4 { grid-template-columns: 1fr; }
 }
@@ -1436,7 +1465,7 @@ a.studio-credit__brand:hover { color: var(--gold-400); }
   color: var(--muted-light);
 }
 .founder-bio p + p { margin-top: 1.1rem; }
-.founder-highlights { margin-top: 3rem; }
+.founder-highlights { margin: 3rem auto 0; max-width: 620px; }
 
 .about-img-block {
   position: relative;
@@ -1461,8 +1490,14 @@ a.studio-credit__brand:hover { color: var(--gold-400); }
   bottom: -1.5rem;
   right: -1.5rem;
   background: var(--gold-500);
-  padding: 1.5rem;
+  padding: 1.75rem 2rem;
   text-align: center;
+}
+/* Divider between the two stacked stats in the badge */
+.about-img-badge__stat + .about-img-badge__stat {
+  margin-top: 1.1rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid rgba(10,9,8,0.22);
 }
 .about-img-badge-num {
   font-family: var(--font-display);
@@ -1527,6 +1562,19 @@ a.studio-credit__brand:hover { color: var(--gold-400); }
 .service-detail:last-child { border-bottom: none; }
 .service-detail.reverse { direction: rtl; }
 .service-detail.reverse > * { direction: ltr; }
+
+/* Two image-less services shown side by side at the end of the list */
+.service-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+  padding: 3.5rem 0 0;
+}
+.service-pair__item { scroll-margin-top: 110px; }
+@media (max-width: 1024px) {
+  .service-pair { grid-template-columns: 1fr; gap: 2.5rem; }
+}
 
 .service-detail__img {
   aspect-ratio: 4/3;
@@ -1724,9 +1772,45 @@ a.studio-credit__brand:hover { color: var(--gold-400); }
 /* ── Contact Page ────────────────────────────────────────── */
 .contact-layout {
   display: grid;
-  grid-template-columns: 1fr 1.6fr;
-  gap: 5rem;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 4rem;
   align-items: start;
+}
+
+/* "What to Expect" steps beside the form */
+.contact-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  margin-top: 2rem;
+}
+.contact-step {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.contact-step__num {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--gold-500);
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: 1.8rem;
+}
+.contact-step__title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 0.3rem;
+}
+.contact-step__text {
+  font-size: 0.88rem;
+  color: var(--muted-light);
+  line-height: 1.6;
 }
 
 .contact-info__item {
