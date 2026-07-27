@@ -71,9 +71,9 @@ const counterObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('[data-target]').forEach(el => counterObserver.observe(el));
 
-/* ── Gallery Filter ──────────────────────────────────────── */
-const filterBtns = document.querySelectorAll('.filter-btn');
+/* ── Gallery Filter + Lightbox ───────────────────────────── */
 const galleryItems = document.querySelectorAll('.gallery-item');
+const filterBtns = document.querySelectorAll('.filter-btn');
 
 filterBtns.forEach(btn => {
   btn.addEventListener('click', () => {
@@ -131,8 +131,7 @@ if (contactForm) {
 }
 
 /* ── Gallery Lightbox ────────────────────────────────────── */
-const galleryPhotoItems = document.querySelectorAll('.gallery-item');
-if (galleryPhotoItems.length) {
+if (galleryItems.length) {
   const overlay = document.createElement('div');
   overlay.id = 'lightbox';
   overlay.innerHTML = `
@@ -164,7 +163,7 @@ if (galleryPhotoItems.length) {
   }
 
   // Gallery items are <div>s, so make them behave like buttons for the keyboard
-  galleryPhotoItems.forEach(item => {
+  galleryItems.forEach(item => {
     const img = item.querySelector('.gallery-item__photo');
     if (!img) return;
     const title = item.querySelector('.gallery-item__hover-title');
@@ -183,12 +182,3 @@ if (galleryPhotoItems.length) {
   overlay.addEventListener('click', e => { if (e.target === overlay) closeLightbox(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('open')) closeLightbox(); });
 }
-
-/* ── Active Nav Link ─────────────────────────────────────── */
-const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-document.querySelectorAll('.nav__link').forEach(link => {
-  const href = link.getAttribute('href');
-  if (href === currentPage || (currentPage === '' && href === 'index.html')) {
-    link.classList.add('active');
-  }
-});
