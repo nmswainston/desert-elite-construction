@@ -726,7 +726,7 @@ ul { list-style: none; }
 
 .project-card:nth-child(1) picture { aspect-ratio: 1472 / 704; }
 .project-card:nth-child(2) picture,
-.project-card:nth-child(3) picture { aspect-ratio: 1900 / 1258; }
+.project-card:nth-child(3) picture { aspect-ratio: 16 / 9; }
 
 .project-card__photo {
   width: 100%;
