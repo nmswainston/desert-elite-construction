@@ -66,7 +66,7 @@ ul { list-style: none; }
 .section { padding: 6rem 0; }
 .section--dark { background: var(--dark-900); }
 .section--mid  { background: var(--dark-700); }
-/* Warm-dark band (the "Why Desert Elite" section) — tones down the old bright
+/* Warm-dark band (the "Why Desert Elite" section): tones down the old bright
    salmon fill so it flows with the dark theme while keeping a warm undertone */
 .section--gold  { background: linear-gradient(150deg, var(--dark-800) 0%, #20140f 100%); color: var(--white); }
 
@@ -142,10 +142,7 @@ ul { list-style: none; }
 .u-mt-3 { margin-top: 3rem; }
 
 /* Image focal-point helpers, swap for per-image inline object-position */
-.obj-y-22 { object-position: center 22%; }
-.obj-y-30 { object-position: center 30%; }
-.obj-y-35 { object-position: center 35%; }
-.obj-y-40 { object-position: center 40%; }
+.obj-y-50 { object-position: center 50%; }
 .obj-y-60 { object-position: center 60%; }
 
 /* ── Buttons ─────────────────────────────────────────────── */
@@ -801,7 +798,7 @@ ul { list-style: none; }
   padding: 6rem 0;
   background:
     linear-gradient(to right, rgba(10,9,8,0.96) 0%, rgba(10,9,8,0.86) 44%, rgba(10,9,8,0.68) 100%),
-    url('../images/dining-hallway.jpg') center / cover no-repeat;
+    url('../images/living-room-3.jpg') center / cover no-repeat;
   position: relative;
   overflow: hidden;
   text-align: center;
@@ -1017,7 +1014,7 @@ a.studio-credit__brand:hover { color: var(--gold-400); }
   background:
     linear-gradient(to bottom, rgba(5,4,3,0.78) 0%, rgba(5,4,3,0) 35%),
     linear-gradient(to right, rgba(5,4,3,0.96) 0%, rgba(5,4,3,0.82) 40%, rgba(5,4,3,0.30) 100%),
-    url('../images/living-room1.jpg') center / cover no-repeat;
+    url('../images/new-sunset-home.jpg') center / cover no-repeat;
   position: relative;
   overflow: hidden;
 }
@@ -1025,7 +1022,7 @@ a.studio-credit__brand:hover { color: var(--gold-400); }
   background-image:
     linear-gradient(to bottom, rgba(5,4,3,0.78) 0%, rgba(5,4,3,0) 35%),
     linear-gradient(to right, rgba(5,4,3,0.96) 0%, rgba(5,4,3,0.82) 40%, rgba(5,4,3,0.30) 100%),
-    url('../images/dining-hallway.jpg');
+    url('../images/new-sunset-home.jpg');
   background-size: cover;
   background-position: center;
 }
@@ -1033,7 +1030,7 @@ a.studio-credit__brand:hover { color: var(--gold-400); }
   background-image:
     linear-gradient(to bottom, rgba(5,4,3,0.78) 0%, rgba(5,4,3,0) 35%),
     linear-gradient(to right, rgba(5,4,3,0.96) 0%, rgba(5,4,3,0.82) 40%, rgba(5,4,3,0.30) 100%),
-    url('../images/kitchen-remodel.jpg');
+    url('../images/kitchen-1.jpg');
   background-size: cover;
   background-position: center;
 }
@@ -1049,7 +1046,7 @@ a.studio-credit__brand:hover { color: var(--gold-400); }
   background-image:
     linear-gradient(to bottom, rgba(5,4,3,0.78) 0%, rgba(5,4,3,0) 35%),
     linear-gradient(to right, rgba(5,4,3,0.96) 0%, rgba(5,4,3,0.82) 40%, rgba(5,4,3,0.30) 100%),
-    url('../images/fireplace.jpg');
+    url('../images/living-room-4.jpg');
   background-size: cover;
   background-position: center;
 }
@@ -1680,7 +1677,7 @@ textarea.form-control { resize: vertical; min-height: 130px; }
 }
 
 /* Tablet portrait keeps the desktop overlay hero, but the tall screen drops the
-   copy onto the foreground/gravel — lift it up so it sits in the grass like desktop */
+   copy onto the foreground/gravel, so lift it up to sit in the grass like desktop */
 @media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
   .hero { padding-bottom: 16svh; }
 }
