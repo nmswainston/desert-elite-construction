@@ -2,7 +2,7 @@
 
 Marketing website for Desert Elite Homes & Construction, a custom home builder serving Scottsdale, Cave Creek, Carefree, Phoenix, and the greater Arizona area. Licensed, bonded, and insured (AZ ROC: 353956).
 
-Live site: https://www.desertelitehomesandconstruction.com
+Live site: https://desertelitehomesandconstruction.com
 
 ## Overview
 
