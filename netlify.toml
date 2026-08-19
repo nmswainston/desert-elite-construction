@@ -35,3 +35,32 @@
   for = "/images/*"
   [headers.values]
     Cache-Control = "public, max-age=2592000"
+
+# ── Canonical URL form ────────────────────────────────────────
+# Netlify serves both /about and /about.html with a 200, so every page
+# has two live URLs. That splits analytics and gives Google two copies
+# to reconcile. The canonical tags, sitemap.xml, and every internal link
+# already use the .html form, so redirect the extensionless form to it.
+#
+# NOTE: this requires "Pretty URLs" (Project configuration > Build &
+# deploy > Post processing) to stay OFF. That setting redirects the
+# opposite direction and would create a loop with these rules.
+[[redirects]]
+  from = "/about"
+  to = "/about.html"
+  status = 301
+
+[[redirects]]
+  from = "/services"
+  to = "/services.html"
+  status = 301
+
+[[redirects]]
+  from = "/projects"
+  to = "/projects.html"
+  status = 301
+
+[[redirects]]
+  from = "/contact"
+  to = "/contact.html"
+  status = 301
