@@ -56,6 +56,14 @@ ul { list-style: none; }
   border-color: var(--gold-500);
 }
 
+/* Font Awesome is loaded asynchronously, so its glyphs arrive after first
+   paint. Reserving an em of inline space keeps text from shifting when
+   they land. min-width, not width, so wider icons still render full size. */
+.fas, .far, .fab, .fa-solid, .fa-regular, .fa-brands {
+  display: inline-block;
+  min-width: 1em;
+}
+
 /* ── Utility ─────────────────────────────────────────────── */
 .container {
   max-width: var(--container-max);
@@ -375,6 +383,10 @@ ul { list-style: none; }
   left: -24px;
   z-index: 0;
   background: url('../images/new-sunset-home.jpg') center 50% / cover no-repeat;
+  /* WebP where supported; the declaration above stays as the fallback */
+  background-image:
+    image-set(url('../images/new-sunset-home.webp') type('image/webp'),
+              url('../images/new-sunset-home.jpg') type('image/jpeg'));
 }
 
 .hero__content {
@@ -793,12 +805,48 @@ ul { list-style: none; }
   line-height: 1.8;
 }
 
+/* ── FAQ ─────────────────────────────────────────────────── */
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem 3rem;
+}
+
+.faq-item {
+  border-top: 1px solid rgba(240,106,88,0.18);
+  padding-top: 1.5rem;
+}
+
+.faq-item__q {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  margin-bottom: 0.75rem;
+}
+
+.faq-item__a {
+  font-size: 0.92rem;
+  color: var(--muted-light);
+  line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+  .faq-grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+
 /* ── CTA Section ─────────────────────────────────────────── */
 .cta-section {
   padding: 6rem 0;
   background:
     linear-gradient(to right, rgba(10,9,8,0.96) 0%, rgba(10,9,8,0.86) 44%, rgba(10,9,8,0.68) 100%),
     url('../images/living-room-3.jpg') center / cover no-repeat;
+  /* WebP where supported; the declaration above stays as the fallback */
+  background-image:
+    linear-gradient(to right, rgba(10,9,8,0.96) 0%, rgba(10,9,8,0.86) 44%, rgba(10,9,8,0.68) 100%),
+    image-set(url('../images/living-room-3.webp') type('image/webp'),
+              url('../images/living-room-3.jpg') type('image/jpeg'));
   position: relative;
   overflow: hidden;
   text-align: center;
@@ -1015,6 +1063,12 @@ a.studio-credit__brand:hover { color: var(--gold-400); }
     linear-gradient(to bottom, rgba(5,4,3,0.78) 0%, rgba(5,4,3,0) 35%),
     linear-gradient(to right, rgba(5,4,3,0.96) 0%, rgba(5,4,3,0.82) 40%, rgba(5,4,3,0.30) 100%),
     url('../images/new-sunset-home.jpg') center / cover no-repeat;
+  /* WebP where supported; the declaration above stays as the fallback */
+  background-image:
+    linear-gradient(to bottom, rgba(5,4,3,0.78) 0%, rgba(5,4,3,0) 35%),
+    linear-gradient(to right, rgba(5,4,3,0.96) 0%, rgba(5,4,3,0.82) 40%, rgba(5,4,3,0.30) 100%),
+    image-set(url('../images/new-sunset-home.webp') type('image/webp'),
+              url('../images/new-sunset-home.jpg') type('image/jpeg'));
   position: relative;
   overflow: hidden;
 }
@@ -1023,6 +1077,12 @@ a.studio-credit__brand:hover { color: var(--gold-400); }
     linear-gradient(to bottom, rgba(5,4,3,0.78) 0%, rgba(5,4,3,0) 35%),
     linear-gradient(to right, rgba(5,4,3,0.96) 0%, rgba(5,4,3,0.82) 40%, rgba(5,4,3,0.30) 100%),
     url('../images/new-sunset-home.jpg');
+  /* WebP where supported; the declaration above stays as the fallback */
+  background-image:
+    linear-gradient(to bottom, rgba(5,4,3,0.78) 0%, rgba(5,4,3,0) 35%),
+    linear-gradient(to right, rgba(5,4,3,0.96) 0%, rgba(5,4,3,0.82) 40%, rgba(5,4,3,0.30) 100%),
+    image-set(url('../images/new-sunset-home.webp') type('image/webp'),
+              url('../images/new-sunset-home.jpg') type('image/jpeg'));
   background-size: cover;
   background-position: center;
 }
@@ -1031,6 +1091,12 @@ a.studio-credit__brand:hover { color: var(--gold-400); }
     linear-gradient(to bottom, rgba(5,4,3,0.78) 0%, rgba(5,4,3,0) 35%),
     linear-gradient(to right, rgba(5,4,3,0.96) 0%, rgba(5,4,3,0.82) 40%, rgba(5,4,3,0.30) 100%),
     url('../images/kitchen-1.jpg');
+  /* WebP where supported; the declaration above stays as the fallback */
+  background-image:
+    linear-gradient(to bottom, rgba(5,4,3,0.78) 0%, rgba(5,4,3,0) 35%),
+    linear-gradient(to right, rgba(5,4,3,0.96) 0%, rgba(5,4,3,0.82) 40%, rgba(5,4,3,0.30) 100%),
+    image-set(url('../images/kitchen-1.webp') type('image/webp'),
+              url('../images/kitchen-1.jpg') type('image/jpeg'));
   background-size: cover;
   background-position: center;
 }
@@ -1039,6 +1105,12 @@ a.studio-credit__brand:hover { color: var(--gold-400); }
     linear-gradient(to bottom, rgba(5,4,3,0.78) 0%, rgba(5,4,3,0) 35%),
     linear-gradient(to right, rgba(5,4,3,0.96) 0%, rgba(5,4,3,0.82) 40%, rgba(5,4,3,0.30) 100%),
     url('../images/new-sunset-home.jpg');
+  /* WebP where supported; the declaration above stays as the fallback */
+  background-image:
+    linear-gradient(to bottom, rgba(5,4,3,0.78) 0%, rgba(5,4,3,0) 35%),
+    linear-gradient(to right, rgba(5,4,3,0.96) 0%, rgba(5,4,3,0.82) 40%, rgba(5,4,3,0.30) 100%),
+    image-set(url('../images/new-sunset-home.webp') type('image/webp'),
+              url('../images/new-sunset-home.jpg') type('image/jpeg'));
   background-size: cover;
   background-position: center 40%;
 }
@@ -1047,6 +1119,12 @@ a.studio-credit__brand:hover { color: var(--gold-400); }
     linear-gradient(to bottom, rgba(5,4,3,0.78) 0%, rgba(5,4,3,0) 35%),
     linear-gradient(to right, rgba(5,4,3,0.96) 0%, rgba(5,4,3,0.82) 40%, rgba(5,4,3,0.30) 100%),
     url('../images/living-room-4.jpg');
+  /* WebP where supported; the declaration above stays as the fallback */
+  background-image:
+    linear-gradient(to bottom, rgba(5,4,3,0.78) 0%, rgba(5,4,3,0) 35%),
+    linear-gradient(to right, rgba(5,4,3,0.96) 0%, rgba(5,4,3,0.82) 40%, rgba(5,4,3,0.30) 100%),
+    image-set(url('../images/living-room-4.webp') type('image/webp'),
+              url('../images/living-room-4.jpg') type('image/jpeg'));
   background-size: cover;
   background-position: center;
 }
