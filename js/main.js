@@ -1,5 +1,28 @@
 /* Desert Elite Homes & Construction, Main JS */
 
+/* ── Analytics (GA4) ─────────────────────────────────────
+   Paste the Measurement ID below and analytics goes live on every
+   page. It belongs to a property on the CLIENT's own Google account,
+   with us added as a user, so their traffic history stays theirs.
+
+   Left empty, nothing loads and nothing is sent: no script request,
+   no cookies, no console errors. Safe to ship in this state.        */
+const GA_MEASUREMENT_ID = ''; // e.g. 'G-XXXXXXXXXX'
+
+window.dataLayer = window.dataLayer || [];
+// Must be a classic function: gtag forwards its `arguments` object.
+function gtag() { dataLayer.push(arguments); }
+
+if (GA_MEASUREMENT_ID) {
+  const gaScript = document.createElement('script');
+  gaScript.async = true;
+  gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_MEASUREMENT_ID;
+  document.head.appendChild(gaScript);
+
+  gtag('js', new Date());
+  gtag('config', GA_MEASUREMENT_ID);
+}
+
 /* ── Sticky Nav ─────────────────────────────────────────── */
 const nav = document.querySelector('.nav');
 if (nav) {
@@ -107,6 +130,10 @@ if (contactForm) {
       });
 
       if (res.ok) {
+        // A quote request is the only conversion that matters here, so
+        // record it as one. Pageviews say who arrived; this says who asked.
+        gtag('event', 'generate_lead', { method: 'contact_form' });
+
         contactForm.reset();
         // Swap the form out for the success panel (role="status" announces it)
         const success = document.querySelector('#formSuccess');
