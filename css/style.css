@@ -718,7 +718,7 @@ ul { list-style: none; }
   background: #050403;
 }
 
-.project-card:nth-child(1) picture { aspect-ratio: 1472 / 704; }
+.project-card:nth-child(1) picture { aspect-ratio: 1600 / 893; }
 .project-card:nth-child(2) picture,
 .project-card:nth-child(3) picture { aspect-ratio: 16 / 9; }
 
@@ -1090,20 +1090,6 @@ a.studio-credit__brand:hover { color: var(--gold-400); }
   background-image:
     linear-gradient(to bottom, rgba(5,4,3,0.78) 0%, rgba(5,4,3,0) 35%),
     linear-gradient(to right, rgba(5,4,3,0.96) 0%, rgba(5,4,3,0.82) 40%, rgba(5,4,3,0.30) 100%),
-    url('../images/kitchen-1.jpg');
-  /* WebP where supported; the declaration above stays as the fallback */
-  background-image:
-    linear-gradient(to bottom, rgba(5,4,3,0.78) 0%, rgba(5,4,3,0) 35%),
-    linear-gradient(to right, rgba(5,4,3,0.96) 0%, rgba(5,4,3,0.82) 40%, rgba(5,4,3,0.30) 100%),
-    image-set(url('../images/kitchen-1.webp') type('image/webp'),
-              url('../images/kitchen-1.jpg') type('image/jpeg'));
-  background-size: cover;
-  background-position: center;
-}
-.page-hero--projects {
-  background-image:
-    linear-gradient(to bottom, rgba(5,4,3,0.78) 0%, rgba(5,4,3,0) 35%),
-    linear-gradient(to right, rgba(5,4,3,0.96) 0%, rgba(5,4,3,0.82) 40%, rgba(5,4,3,0.30) 100%),
     url('../images/new-sunset-home.jpg');
   /* WebP where supported; the declaration above stays as the fallback */
   background-image:
@@ -1112,7 +1098,17 @@ a.studio-credit__brand:hover { color: var(--gold-400); }
     image-set(url('../images/new-sunset-home.webp') type('image/webp'),
               url('../images/new-sunset-home.jpg') type('image/jpeg'));
   background-size: cover;
-  background-position: center 40%;
+  background-position: center 55%;
+}
+/* No photo here on purpose: the gallery directly below shows every project
+   image, so any hero photo would repeat one of them. A warm tinted gradient
+   keeps the header on-brand and lets the work carry the page. */
+.page-hero--projects {
+  background-image:
+    linear-gradient(to bottom, rgba(5,4,3,0.55) 0%, rgba(5,4,3,0.10) 45%, rgba(5,4,3,0.75) 100%),
+    linear-gradient(112deg, var(--dark-900) 0%, var(--dark-800) 38%, var(--dark-700) 62%, rgba(156,61,44,0.42) 100%);
+  background-size: cover;
+  background-position: center;
 }
 .page-hero--contact {
   background-image:
