@@ -43,13 +43,25 @@ if (backToTop) {
 /* ── Mobile Menu ─────────────────────────────────────────── */
 const burger = document.querySelector('.nav__burger');
 const mobileMenu = document.querySelector('.nav__mobile');
-const mobileClose = document.querySelector('.nav__mobile-close');
 
 if (burger && mobileMenu) {
-  burger.addEventListener('click', () => mobileMenu.classList.add('open'));
-  if (mobileClose) mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  // The burger doubles as the close control: it sits above the overlay, so a
+  // second tap on the same spot that opened the menu is what people reach for.
+  const setMenu = (open) => {
+    mobileMenu.classList.toggle('open', open);
+    burger.classList.toggle('is-open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    // Stop the page behind the overlay from scrolling under the menu.
+    document.body.style.overflow = open ? 'hidden' : '';
+  };
+
+  burger.addEventListener('click', () => setMenu(!mobileMenu.classList.contains('open')));
   mobileMenu.querySelectorAll('.nav__mobile-link').forEach(link => {
-    link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    link.addEventListener('click', () => setMenu(false));
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) setMenu(false);
   });
 }
 

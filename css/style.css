@@ -331,6 +331,11 @@ ul { list-style: none; }
   background: var(--white);
   transition: var(--transition);
 }
+/* With the menu open the burger is the close control, so it takes the X that
+   people expect there. The bars are 2px on a 5px gap, hence the 7px shift. */
+.nav__burger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav__burger.is-open span:nth-child(2) { opacity: 0; }
+.nav__burger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* Mobile menu */
 .nav__mobile {
@@ -347,9 +352,10 @@ ul { list-style: none; }
      past the scroll origin. Paired with the scroll, nothing becomes stranded. */
   justify-content: safe center;
   overflow-y: auto;
-  /* Top padding keeps the first link clear of the header bar, which paints
-     over this overlay, and of the close button tucked into that corner. */
-  padding: 5rem 1.5rem 2.5rem;
+  /* The header bar paints over this overlay, so the list has to start below it.
+     The bar is 84px on a portrait phone but grows to 99px on a wide landscape
+     one, so pad past the taller case rather than the one in front of us. */
+  padding: 7rem 1.5rem 2.5rem;
   gap: 2.5rem;
   opacity: 0;
   pointer-events: none;
@@ -383,16 +389,6 @@ ul { list-style: none; }
 @media (max-height: 700px) {
   .nav__mobile { gap: 1.5rem; }
   .nav__mobile-link { font-size: 1.8rem; }
-}
-.nav__mobile-close {
-  position: absolute;
-  top: 1.8rem; right: 2rem;
-  font-size: 2rem;
-  background: none;
-  border: none;
-  color: var(--muted-light);
-  cursor: pointer;
-  line-height: 1;
 }
 
 /* ── Hero ────────────────────────────────────────────────── */
