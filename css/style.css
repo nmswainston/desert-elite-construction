@@ -299,6 +299,21 @@ ul { list-style: none; }
 .nav__link:hover::after,
 .nav__link.active::after { transform: scaleX(1); }
 
+/* Instagram sits in the nav as a glyph rather than a word, so it takes a larger
+   font-size to carry the same visual weight as the uppercase labels beside it,
+   and it skips the gold underline, which has no text baseline to sit under.
+   The mark is inline SVG, not an icon font: the desktop link has no text beside
+   it, so a blocked CDN would leave an empty clickable gap and the link would
+   simply vanish. Sized in em so the font-size above still drives it. */
+.nav__social-icon { width: 1em; height: 1em; display: block; }
+
+.nav__social {
+  display: flex;
+  align-items: center;
+  font-size: 1.15rem;
+}
+.nav__social::after { content: none; }
+
 .nav__cta {
   margin-left: 1rem;
   padding: 0.6rem 1.4rem;
@@ -321,6 +336,11 @@ ul { list-style: none; }
   background: var(--white);
   transition: var(--transition);
 }
+/* With the menu open the burger is the close control, so it takes the X that
+   people expect there. The bars are 2px on a 5px gap, hence the 7px shift. */
+.nav__burger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav__burger.is-open span:nth-child(2) { opacity: 0; }
+.nav__burger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* Mobile menu */
 .nav__mobile {
@@ -332,6 +352,15 @@ ul { list-style: none; }
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  /* `safe` keeps the top item reachable when the list outgrows the screen:
+     plain centring would overflow equally both ways and clip the first link
+     past the scroll origin. Paired with the scroll, nothing becomes stranded. */
+  justify-content: safe center;
+  overflow-y: auto;
+  /* The header bar paints over this overlay, so the list has to start below it.
+     The bar is 84px on a portrait phone but grows to 99px on a wide landscape
+     one, so pad past the taller case rather than the one in front of us. */
+  padding: 7rem 1.5rem 2.5rem;
   gap: 2.5rem;
   opacity: 0;
   pointer-events: none;
@@ -351,16 +380,20 @@ ul { list-style: none; }
   transition: color 0.2s;
 }
 .nav__mobile-link:hover { color: var(--gold-500); }
+/* The mobile menu is all words, so Instagram keeps its label and leads with the
+   icon, held a touch smaller than the 2.4rem type so the glyph doesn't tower. */
+.nav__mobile-social {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.nav__mobile-social .nav__social-icon { font-size: 0.85em; }
 .nav__mobile-cta { margin-top: 1rem; }
-.nav__mobile-close {
-  position: absolute;
-  top: 1.8rem; right: 2rem;
-  font-size: 2rem;
-  background: none;
-  border: none;
-  color: var(--muted-light);
-  cursor: pointer;
-  line-height: 1;
+/* Six links plus the quote button no longer clear a short phone screen at the
+   full 2.4rem, so tighten the type and spacing rather than let the menu scroll. */
+@media (max-height: 700px) {
+  .nav__mobile { gap: 1.5rem; }
+  .nav__mobile-link { font-size: 1.8rem; }
 }
 
 /* ── Hero ────────────────────────────────────────────────── */

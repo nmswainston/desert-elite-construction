@@ -43,13 +43,37 @@ if (backToTop) {
 /* ── Mobile Menu ─────────────────────────────────────────── */
 const burger = document.querySelector('.nav__burger');
 const mobileMenu = document.querySelector('.nav__mobile');
-const mobileClose = document.querySelector('.nav__mobile-close');
 
 if (burger && mobileMenu) {
-  burger.addEventListener('click', () => mobileMenu.classList.add('open'));
-  if (mobileClose) mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  // The burger doubles as the close control: it sits above the overlay, so a
+  // second tap on the same spot that opened the menu is what people reach for.
+  const setMenu = (open) => {
+    mobileMenu.classList.toggle('open', open);
+    // A closed menu is only transparent, not hidden, on a phone: without inert
+    // its links stay in the tab order and keyboard users land on invisible
+    // controls. The markup ships inert, so this holds before the first tap too.
+    mobileMenu.toggleAttribute('inert', !open);
+    burger.classList.toggle('is-open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    // Stop the page behind the overlay from scrolling under the menu.
+    document.body.style.overflow = open ? 'hidden' : '';
+  };
+
+  burger.addEventListener('click', () => setMenu(!mobileMenu.classList.contains('open')));
+  // Leaving the mobile layout hides both the overlay and the burger, so an open
+  // menu would strand the scroll lock on a page with no control left to clear
+  // it. Close it on the way out. Matches the 768px breakpoint in the CSS.
+  const mobileLayout = window.matchMedia('(max-width: 768px)');
+  mobileLayout.addEventListener('change', (e) => { if (!e.matches) setMenu(false); });
   mobileMenu.querySelectorAll('.nav__mobile-link').forEach(link => {
-    link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    link.addEventListener('click', () => setMenu(false));
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+      setMenu(false);
+      burger.focus(); // focus would otherwise be stranded on the inert menu
+    }
   });
 }
 
