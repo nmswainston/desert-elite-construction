@@ -49,6 +49,10 @@ if (burger && mobileMenu) {
   // second tap on the same spot that opened the menu is what people reach for.
   const setMenu = (open) => {
     mobileMenu.classList.toggle('open', open);
+    // A closed menu is only transparent, not hidden, on a phone: without inert
+    // its links stay in the tab order and keyboard users land on invisible
+    // controls. The markup ships inert, so this holds before the first tap too.
+    mobileMenu.toggleAttribute('inert', !open);
     burger.classList.toggle('is-open', open);
     burger.setAttribute('aria-expanded', String(open));
     burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
@@ -66,7 +70,10 @@ if (burger && mobileMenu) {
     link.addEventListener('click', () => setMenu(false));
   });
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) setMenu(false);
+    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+      setMenu(false);
+      burger.focus(); // focus would otherwise be stranded on the inert menu
+    }
   });
 }
 
