@@ -209,3 +209,16 @@ if (galleryItems.length) {
   overlay.addEventListener('click', e => { if (e.target === overlay) closeLightbox(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('open')) closeLightbox(); });
 }
+
+/* ── Footer Year ─────────────────────────────────────────
+   Keeps the copyright line from going stale. Shows the launch year
+   on its own during 2026, then a range (2026-2027 and onward), which
+   stays accurate about first publication instead of silently claiming
+   the site was published this year.                                  */
+const footerYear = document.querySelector('.footer__year');
+if (footerYear) {
+  const LAUNCH_YEAR = 2026;
+  const currentYear = new Date().getFullYear();
+  footerYear.textContent =
+    currentYear > LAUNCH_YEAR ? `${LAUNCH_YEAR}-${currentYear}` : `${LAUNCH_YEAR}`;
+}

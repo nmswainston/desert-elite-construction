@@ -966,7 +966,11 @@ ul { list-style: none; }
   color: var(--muted);
   letter-spacing: 0.04em;
 }
+/* Sits directly under the Licensed/Bonded/Insured badges. The license
+   number is the evidence for the "Licensed" claim, so it belongs next to
+   it rather than marooned on the far side of the bottom bar. */
 .footer__roc {
+  margin-top: 0.85rem;
   font-family: var(--font-display);
   font-size: 0.75rem;
   letter-spacing: 0.12em;
@@ -1824,3 +1828,75 @@ textarea.form-control { resize: vertical; min-height: 130px; }
   .filter-bar { gap: 0.35rem; }
   .filter-btn { padding: 0.45rem 0.9rem; font-size: 0.72rem; }
 }
+
+/* ── Legal / policy pages ─────────────────────────────────── */
+/* Long-form prose. Narrower measure than the marketing sections
+   because this is meant to be read, not skimmed. */
+.legal {
+  max-width: 68ch;
+  margin-top: 2.5rem;
+  color: var(--muted-light);
+  font-size: 1rem;
+  line-height: 1.85;
+}
+.legal p { margin: 0 0 1.25rem; }
+.legal strong { color: var(--sand-100); font-weight: 600; }
+
+.legal h2 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--white);
+  margin: 2.75rem 0 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.legal h2:first-of-type { margin-top: 2rem; }
+
+/* The global reset strips list markers, so put them back here:
+   in a policy, the bullets carry meaning. */
+.legal ul {
+  list-style: disc;
+  padding-left: 1.4rem;
+  margin: 0 0 1.25rem;
+}
+.legal li { margin-bottom: 0.5rem; }
+.legal li::marker { color: var(--gold-500); }
+
+.legal a {
+  color: var(--gold-500);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+.legal a:hover { color: var(--gold-400); }
+
+.legal__updated {
+  font-size: 0.85rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Legal link stacks above the copyright, so the copyright stays the
+   last line of the footer where it conventionally belongs. */
+.footer__bottom-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+}
+.footer__legal-link {
+  font-size: 0.8rem;
+  color: var(--muted-light);
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: color var(--transition);
+  /* Padding lifts the tap target to the 24px minimum without
+     visibly changing the spacing; the gap above is reduced to match. */
+  display: inline-block;
+  padding: 0.2rem 0;
+}
+.footer__legal-link:hover,
+.footer__legal-link:focus-visible { color: var(--gold-500); }
