@@ -301,7 +301,12 @@ ul { list-style: none; }
 
 /* Instagram sits in the nav as a glyph rather than a word, so it takes a larger
    font-size to carry the same visual weight as the uppercase labels beside it,
-   and it skips the gold underline, which has no text baseline to sit under. */
+   and it skips the gold underline, which has no text baseline to sit under.
+   The mark is inline SVG, not an icon font: the desktop link has no text beside
+   it, so a blocked CDN would leave an empty clickable gap and the link would
+   simply vanish. Sized in em so the font-size above still drives it. */
+.nav__social-icon { width: 1em; height: 1em; display: block; }
+
 .nav__social {
   display: flex;
   align-items: center;
@@ -382,7 +387,7 @@ ul { list-style: none; }
   align-items: center;
   gap: 0.6rem;
 }
-.nav__mobile-social i { font-size: 0.85em; }
+.nav__mobile-social .nav__social-icon { font-size: 0.85em; }
 .nav__mobile-cta { margin-top: 1rem; }
 /* Six links plus the quote button no longer clear a short phone screen at the
    full 2.4rem, so tighten the type and spacing rather than let the menu scroll. */

@@ -57,6 +57,11 @@ if (burger && mobileMenu) {
   };
 
   burger.addEventListener('click', () => setMenu(!mobileMenu.classList.contains('open')));
+  // Leaving the mobile layout hides both the overlay and the burger, so an open
+  // menu would strand the scroll lock on a page with no control left to clear
+  // it. Close it on the way out. Matches the 768px breakpoint in the CSS.
+  const mobileLayout = window.matchMedia('(max-width: 768px)');
+  mobileLayout.addEventListener('change', (e) => { if (!e.matches) setMenu(false); });
   mobileMenu.querySelectorAll('.nav__mobile-link').forEach(link => {
     link.addEventListener('click', () => setMenu(false));
   });
