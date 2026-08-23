@@ -1006,6 +1006,12 @@ a.studio-credit__brand:hover { color: var(--gold-400); }
   align-items: center;
   padding-top: 9rem;
 }
+
+/* Utility pages open directly under the fixed nav rather than behind a
+   page-hero, so they need their own clearance. The nav is the logo height
+   plus its padding, and the logo shrinks at each breakpoint, so this
+   tracks the same steps .page-hero uses. */
+.legal-section { padding-top: 9rem; }
 .error-page {
   text-align: center;
   max-width: 600px;
@@ -1738,6 +1744,7 @@ textarea.form-control { resize: vertical; min-height: 130px; }
   .nav__burger { display: flex; }
   .nav__mobile { display: flex; }
   .page-hero { padding: 7rem 1.25rem 3rem; }
+  .legal-section { padding-top: 7rem; }
   /* Solid black header */
   .nav,
   .nav.scrolled { background-color: #0A0908; background-image: none; }
@@ -1802,6 +1809,7 @@ textarea.form-control { resize: vertical; min-height: 130px; }
   .nav { padding: 0.75rem 1rem; }
   .nav__logo-img { height: 60px; }
   .page-hero { padding: 5.5rem 1rem 2.5rem; }
+  .legal-section { padding-top: 6rem; }
   .hero { padding: 5.5rem 0 0; }
   .hero__bg { background-position: center; }
   .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 240px; }

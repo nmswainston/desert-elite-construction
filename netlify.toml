@@ -37,30 +37,39 @@
     Cache-Control = "public, max-age=2592000"
 
 # ── Canonical URL form ────────────────────────────────────────
-# Netlify serves both /about and /about.html with a 200, so every page
-# has two live URLs. That splits analytics and gives Google two copies
-# to reconcile. The canonical tags, sitemap.xml, and every internal link
-# already use the .html form, so redirect the extensionless form to it.
+# Netlify's Pretty URLs post-processing rewrites internal .html links to
+# the extensionless form and serves them, so extensionless is the form
+# visitors and crawlers actually see. Canonicals and sitemap.xml match it.
 #
-# NOTE: this requires "Pretty URLs" (Project configuration > Build &
-# deploy > Post processing) to stay OFF. That setting redirects the
-# opposite direction and would create a loop with these rules.
+# These send the .html form to its extensionless twin so each page has one
+# address instead of two. force = true is required because the .html file
+# genuinely exists, and without it Netlify serves the file and skips the rule.
 [[redirects]]
-  from = "/about"
-  to = "/about.html"
+  from = "/about.html"
+  to = "/about"
   status = 301
+  force = true
 
 [[redirects]]
-  from = "/services"
-  to = "/services.html"
+  from = "/services.html"
+  to = "/services"
   status = 301
+  force = true
 
 [[redirects]]
-  from = "/projects"
-  to = "/projects.html"
+  from = "/projects.html"
+  to = "/projects"
   status = 301
+  force = true
 
 [[redirects]]
-  from = "/contact"
-  to = "/contact.html"
+  from = "/contact.html"
+  to = "/contact"
   status = 301
+  force = true
+
+[[redirects]]
+  from = "/privacy.html"
+  to = "/privacy"
+  status = 301
+  force = true
