@@ -6,77 +6,56 @@ Live site: https://desertelitehomesandconstruction.com
 
 ## Overview
 
-A fast, accessible, fully responsive static website. No frameworks and no build step: just HTML5, CSS3, and vanilla JavaScript served directly to the browser.
+A fast, accessible, fully responsive static site built with [Astro](https://astro.build). It is plain HTML, CSS and a little vanilla JavaScript in the browser: no framework runs on the visitor's device. All the words, copy, links and photo descriptions live in small data files in `src/data/`, and the page files only draw them. That keeps a change to the words small, in one obvious place, and safe to check, whether a person makes it or Caret (the console.log(ic) website assistant) drafts it.
 
-## Tech stack
+## Where to change things
 
-- HTML5 with semantic landmarks (one `header`, `nav`, `main`, `footer` per page)
-- CSS3 with custom properties and BEM-style class naming (single stylesheet)
-- Vanilla JavaScript, no dependencies
-- Google Fonts (Oswald, Inter) and Font Awesome 6 via CDN
-- Deployed on Netlify, with the contact form wired to Netlify Forms
+| To change | Edit |
+|---|---|
+| The business name, licence number, areas served, Instagram link | `src/data/site.ts` |
+| The menu and the quote button | `src/data/nav.ts` |
+| The footer | `src/data/footer.ts` (the service links come from `services.ts`) |
+| The tab title and the description search engines show, for each page | `src/data/pages.ts` |
+| The six services (home card, Services page section, footer link, search description) | `src/data/services.ts` |
+| The home page | `src/data/home.ts` |
+| The About page | `src/data/about.ts` |
+| The words around the services on the Services page | `src/data/servicesPage.ts` |
+| The Gallery page | `src/data/projects.ts` |
+| The Contact page words (not the form) | `src/data/contact.ts` |
+| The 404 page | `src/data/notFound.ts` |
+| Every photo's file and description | `src/data/pictures.ts` |
 
-## Pages
+In the words, `[[gold words]]` show in the gold highlight, `{br}` is a line break and `{br-desktop}` is a line break that only shows on wide screens.
 
-- `index.html`: Home (hero, services overview, stats, project preview, process, CTA)
-- `about.html`: Company story, values, and credentials
-- `services.html`: Six service offerings with anchor links from the footer
-- `projects.html`: Filterable portfolio gallery with a lightbox
-- `contact.html`: Quote request form (Netlify Forms, honeypot spam protection)
-- `404.html`: Custom not-found page
+Not in data files, because they are code: the page layouts (`src/pages`, `src/components`, `src/layouts`), the stylesheet (`public/css/style.css`), the script (`public/js/main.js`), the quote form (`src/components/ContactForm.astro`, which Netlify Forms reads), the privacy policy text (`src/pages/privacy.astro`) and the structured data builder (`src/lib/schema.ts`).
 
-## Project structure
+## Photos
 
-```
-.
-├── index.html
-├── about.html
-├── services.html
-├── projects.html
-├── contact.html
-├── 404.html
-├── css/
-│   └── style.css        # single stylesheet, CSS custom properties + BEM
-├── js/
-│   └── main.js          # sticky nav, mobile menu, scroll reveal, counters,
-│                        # gallery filter + lightbox, contact form handling
-├── images/              # photography, logos, favicons (jpg/webp/png/svg)
-├── brand/               # source logo kit (SVG/AI/PDF, color + white)
-└── netlify.toml         # security headers + caching rules
-```
+Photos are `.jpg` files in `public/images`, each listed in `src/data/pictures.ts` with a description. Every photo has **one** source file: the `.webp` copies are made from the `.jpg` files by `npm run images` (it runs before every build and dev start, and the `.webp` files are not committed).
 
-## Local development
+To replace a photo, replace its `.jpg` with a file of the same name, and change its description in `pictures.ts` if it shows something different. The width and height on the page are read from the file, so a photo of another shape is never stretched.
 
-There is no build step. Open any `.html` file directly, or serve the folder with any static server:
+To add a photo: put the `.jpg` in `public/images`, add it to `pictures.ts`, then add it where it should show (for the gallery, one entry at the end of `items` in `projects.ts`).
+
+## Commands
 
 ```bash
-# Python 3
-python -m http.server 8000
-
-# then visit http://localhost:8000
+npm install
+npm run dev       # makes the .webp files, then runs the site at http://localhost:4321
+npm run build     # makes the .webp files, type-checks, checks the content, then builds into dist/
+npm run preview   # serves dist/
 ```
 
-Note: the contact form posts to Netlify Forms, so its submit flow only works on the deployed site, not against a plain local server.
+## What stops a broken edit
+
+`npm run build` runs `astro check` (a wrong shape of data fails here) and then a content check (`src/lib/checkContent.ts`) as the site builds. It stops the build, and so the Netlify deploy preview, with a plain-English message if a photo file is missing or is not a `.jpg`, a photo has no description or a very long one, a link goes nowhere, a service link points at a service that does not exist, a title or search description is too long, a gallery tile has an unknown category or shape, or a `[[` has no `]]`.
 
 ## Deployment
 
-Hosted on Netlify. Connect the repository (Add new site, Import from Git) and Netlify reads `netlify.toml` automatically:
+Deployed on Netlify from `main` (`netlify.toml`: `npm run build`, publish `dist`, Node 20). Every pull request gets a deploy preview. The contact form posts to Netlify Forms (`data-netlify`, form name `contact`, with a honeypot). Visitor numbers come from Umami (no cookies).
 
-- Publish directory: repository root (`publish = "."`)
-- Security headers: `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`
-- Caching: HTML, CSS, and JS revalidate on each request so updates go live immediately; images cache for 30 days
+The addresses are the same as before the Astro rebuild: `about.html` is still the file behind `/about`, and the redirects in `netlify.toml` still send the `.html` form to the clean address.
 
-Every push to `main` triggers an automatic deploy.
+## Editing with Caret
 
-## Accessibility and quality
-
-- Exactly one `h1` per page with correct heading order
-- All four landmark regions on every page
-- Labels tied to every form field, descriptive `alt` text on every image, decorative icons marked `aria-hidden`
-- Visible keyboard focus styles and a keyboard-operable gallery lightbox
-- No inline styles: all styling lives in `css/style.css`
-- Responsive across mobile, tablet, and desktop
-
-## Credit
-
-Crafted by [console.log(ic)](https://www.consolelogic.net)
+`caret/site-config.json` and `caret/evals.json` are the registry entry and the test requests for Caret. Run `npm run check-site -- --site desert-elite` in the Caret repository after adding the entry there.

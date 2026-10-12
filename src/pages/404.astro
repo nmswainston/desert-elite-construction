@@ -1,0 +1,20 @@
+---
+import Btn from "../components/Btn.astro";
+import { notFound } from "../data/notFound";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { rich } from "../lib/text";
+---
+<BaseLayout page="notFound">
+  <section class="section section--dark error-section">
+    <div class="container">
+      <div class="error-page">
+        <div class="error-page__code" aria-hidden="true">{notFound.code}</div>
+        <h1 class="section-title" set:html={rich(notFound.title)} />
+        <p class="section-sub">{notFound.sub}</p>
+        <div class="error-page__cta">
+          {notFound.buttons.map((button) => <Btn {...button} />)}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

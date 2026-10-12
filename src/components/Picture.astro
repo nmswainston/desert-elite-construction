@@ -1,0 +1,16 @@
+---
+// One photo, drawn the way every photo on the site is: a .webp for browsers that can use it, the .jpg as the fallback.
+import type { PictureUse } from "../data/types";
+import { resolve, sizeOf } from "../lib/pictures";
+import { relative, webpOf } from "../lib/text";
+
+interface Props {
+  use: PictureUse;
+  class?: string;
+  decoding?: "async";
+}
+const { use, class: className, decoding } = Astro.props;
+const { src, alt } = resolve(use);
+const { width, height } = await sizeOf(src);
+---
+<picture><source srcset={relative(webpOf(src))} type="image/webp"><img class={className} src={relative(src)} alt={alt} width={width} height={height} loading="lazy" decoding={decoding}></picture>

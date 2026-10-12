@@ -1,0 +1,51 @@
+---
+import { footer } from "../data/footer";
+import { serviceCardOrder, services } from "../data/services";
+import { site } from "../data/site";
+
+const inOrder = serviceCardOrder.flatMap((id) => services.find((s) => s.id === id) ?? []);
+---
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <img src="images/logo-white.svg" alt={site.name} class="footer__logo-img" width="384" height="144" loading="lazy" decoding="async" />
+        <p class="footer__about">{footer.about}</p>
+        <div class="footer__badges">
+          {footer.badges.map((badge) => <span class="footer__badge">{badge}</span>)}
+        </div>
+        <div class="footer__roc">{footer.licenseLabel} <span>{site.licenseNumber}</span></div>
+      </div>
+      <div>
+        <div class="footer__heading">{footer.navigationHeading}</div>
+        <ul class="footer__links">
+          {footer.navigation.map((link) => <li><a href={link.href} class="footer__link"><i class="fas fa-chevron-right" aria-hidden="true"></i> {link.label}</a></li>)}
+        </ul>
+      </div>
+      <div>
+        <div class="footer__heading">{footer.servicesHeading}</div>
+        <ul class="footer__links">
+          {inOrder.map((service) => <li><a href={`services.html#${service.id}`} class="footer__link"><i class="fas fa-chevron-right" aria-hidden="true"></i> {service.footerLabel}</a></li>)}
+        </ul>
+      </div>
+      <div>
+        <div class="footer__heading">{footer.contactHeading}</div>
+        <div class="footer__contact-item">
+          <i class="fas fa-location-dot" aria-hidden="true"></i>
+          <div class="footer__contact-value">{site.serviceAreaText}</div>
+        </div>
+        <div class="footer__contact-item">
+          <i class="fas fa-globe" aria-hidden="true"></i>
+          <a href={footer.website.href} target="_blank" rel="noopener" class="footer__contact-value">{footer.website.label}</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="footer__bottom-left">
+        <a href={footer.privacy.href} class="footer__legal-link">{footer.privacy.label}</a>
+        <span class="footer__copy">&copy; <span class="footer__year">{footer.copyrightYear}</span> {footer.copyrightText}</span>
+      </div>
+    </div>
+    <div class="studio-credit">{footer.credit.text} <a href={footer.credit.href} target="_blank" rel="noopener" class="studio-credit__brand">{footer.credit.label}</a></div>
+  </div>
+</footer>

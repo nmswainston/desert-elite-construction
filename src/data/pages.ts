@@ -1,0 +1,91 @@
+import type { Pages } from "./types";
+
+/** What search engines and social sites show for each page: the tab title, the description under the title in search results, and the picture when a link is shared. */
+export const pages: Pages = {
+  notFound: {
+    file: "404",
+    title: "Page Not Found | Desert Elite Homes & Construction",
+    description: "The page you're looking for couldn't be found. Return to Desert Elite Homes & Construction.",
+    robots: "noindex",
+  },
+  home: {
+    file: "index",
+    title: "Desert Elite Homes & Construction | Scottsdale Custom Home Builder",
+    description: "Scottsdale custom home builder. Licensed, bonded, and insured. AZ ROC: 353956. Custom builds, renovations, additions, and more.",
+    twitterDescription: "Scottsdale custom home builder. Licensed, bonded, and insured. AZ ROC: 353956.",
+    preloadImage: "new-sunset-home",
+    social: true,
+    canonical: "/",
+    schema: {
+      type: "WebPage",
+      description: "Scottsdale custom home builder. Licensed, bonded, and insured. AZ ROC: 353956. Custom builds, renovations, additions, and more.",
+      primaryImage: "new-sunset-home",
+    },
+  },
+  about: {
+    file: "about",
+    title: "About Us | Desert Elite Homes & Construction",
+    description: "Learn about Desert Elite Homes and Construction, Scottsdale custom home builder. Licensed, bonded, insured. AZ ROC: 353956.",
+    twitterDescription: "Learn about Desert Elite Homes and Construction, Scottsdale custom home builder. Licensed, bonded, insured. AZ ROC: 353956.",
+    preloadImage: "new-sunset-home",
+    social: true,
+    canonical: "/about",
+    schema: {
+      type: "AboutPage",
+      description: "Learn about Desert Elite Homes and Construction, Scottsdale custom home builder. Licensed, bonded, insured. AZ ROC: 353956.",
+      primaryImage: "living-room-3",
+      breadcrumb: "About",
+    },
+  },
+  services: {
+    file: "services",
+    title: "Services | Desert Elite Homes & Construction",
+    description: "Custom home building, renovations, room additions, kitchen & bath remodels, and lot development across Scottsdale, Cave Creek, Carefree, Phoenix, and the Greater Area.",
+    twitterDescription: "Custom home building, renovations, room additions, kitchen & bath remodels, and more across Scottsdale, Cave Creek, Carefree, Phoenix, and the Greater Area.",
+    preloadImage: "new-sunset-home",
+    social: true,
+    canonical: "/services",
+    schema: {
+      type: "WebPage",
+      description: "Custom home building, renovations, room additions, kitchen and bath remodels, and lot development across Scottsdale, Cave Creek, Carefree, Phoenix, and the Greater Area.",
+      primaryImage: "kitchen-1",
+      breadcrumb: "Services",
+    },
+  },
+  projects: {
+    file: "projects",
+    title: "Gallery | Desert Elite Homes & Construction",
+    description: "Browse completed projects by Desert Elite Homes and Construction, custom homes, renovations, kitchens, and more across Scottsdale, Cave Creek, Carefree, Phoenix, and the Greater Area.",
+    ogDescription: "Browse completed projects by Desert Elite Homes and Construction: custom homes, renovations, kitchens, and more across Scottsdale, Cave Creek, Carefree, Phoenix, and the Greater Area.",
+    twitterDescription: "Browse completed projects by Desert Elite Homes and Construction across Scottsdale, Cave Creek, Carefree, Phoenix, and the Greater Area.",
+    social: true,
+    canonical: "/projects",
+    schema: {
+      type: "CollectionPage",
+      description: "Browse completed projects by Desert Elite Homes and Construction, custom homes, renovations, kitchens, and more across Scottsdale, Cave Creek, Carefree, Phoenix, and the Greater Area.",
+      primaryImage: "new-sunset-home",
+      breadcrumb: "Gallery",
+    },
+  },
+  contact: {
+    file: "contact",
+    title: "Contact | Desert Elite Homes & Construction",
+    description: "Contact Desert Elite Homes and Construction for a free estimate. Custom homes, renovations, and more across Scottsdale, Cave Creek, Carefree, Phoenix, and the Greater Area.",
+    twitterDescription: "Get a free estimate from Desert Elite Homes and Construction. Serving Scottsdale, Cave Creek, Carefree, Phoenix, and the Greater Area.",
+    preloadImage: "living-room-4",
+    social: true,
+    canonical: "/contact",
+    schema: {
+      type: "ContactPage",
+      description: "Contact Desert Elite Homes and Construction for a free estimate. Custom homes, renovations, and more across Scottsdale, Cave Creek, Carefree, Phoenix, and the Greater Area.",
+      primaryImage: "living-room-4",
+      breadcrumb: "Contact",
+    },
+  },
+  privacy: {
+    file: "privacy",
+    title: "Privacy Policy | Desert Elite Homes & Construction",
+    description: "How Desert Elite Homes & Construction handles information collected through this website, including contact form submissions and website analytics.",
+    canonical: "/privacy",
+  },
+};

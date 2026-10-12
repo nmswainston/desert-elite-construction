@@ -1,0 +1,47 @@
+---
+import ContactForm from "../components/ContactForm.astro";
+import PageHero from "../components/PageHero.astro";
+import { contactPage } from "../data/contact";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { rich, twoDigits } from "../lib/text";
+---
+<BaseLayout page="contact" active="contact.html">
+  <PageHero {...contactPage.hero} variant="contact" />
+
+  <section class="section section--dark">
+    <div class="container">
+      <div class="contact-layout">
+        <div class="reveal">
+          <span class="eyebrow">{contactPage.expect.eyebrow}</span>
+          <h2 class="section-title section-title--tight" set:html={rich(contactPage.expect.title)} />
+          <div class="contact-steps">
+            {contactPage.expect.steps.map((step, i) => (
+              <div class="contact-step">
+                <span class="contact-step__num">{twoDigits(i + 1)}</span>
+                <div>
+                  <div class="contact-step__title">{step.title}</div>
+                  <p class="contact-step__text">{step.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-1">
+          <div class="form-card">
+            <div class="form-card__eyebrow">{contactPage.form.eyebrow}</div>
+            <h2 class="form-card__title">{contactPage.form.title}</h2>
+
+            <ContactForm />
+
+            <div class="form-success" id="formSuccess" role="status" hidden>
+              <i class="fas fa-circle-check form-success__icon" aria-hidden="true"></i>
+              <h2 class="form-card__title">{contactPage.success.title}</h2>
+              <p class="form-success__text">{contactPage.success.text}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

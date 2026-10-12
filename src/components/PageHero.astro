@@ -1,0 +1,16 @@
+---
+import type { PageHero } from "../data/types";
+import { rich } from "../lib/text";
+
+interface Props extends PageHero {
+  variant: string;
+}
+const { eyebrow, title, sub, variant } = Astro.props;
+---
+<section class={`page-hero page-hero--${variant}`}>
+  <div class="page-hero__inner">
+    <span class="eyebrow">{eyebrow}</span>
+    <h1 class="page-hero__title" set:html={rich(title)} />
+    <p class="page-hero__sub">{sub}</p>
+  </div>
+</section>
