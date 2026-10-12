@@ -58,4 +58,4 @@ The addresses are the same as before the Astro rebuild: `about.html` is still th
 
 ## Editing with Caret
 
-`caret/site-config.json` and `caret/evals.json` are the registry entry and the test requests for Caret. Run `npm run check-site -- --site desert-elite` in the Caret repository after adding the entry there.
+`caret/site-config.json` and `caret/evals.json` are copies of the registry entry and the test requests that Caret uses (`agent/src/config/sites.ts` and `agent/evals/desert-elite.json` in the Caret repository). **Caret's copy is the one that counts.** Change it there first, then bring these copies in line, so the two never drift apart. Run `npm run check-site -- --site desert-elite` in the Caret repository after a change.
