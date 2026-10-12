@@ -1,0 +1,10 @@
+---
+import type { Button } from "../data/types";
+
+interface Props extends Button {
+  class?: string;
+}
+const { label, href, icon, outline, class: extra } = Astro.props;
+const classes = ["btn", outline ? "btn-outline" : "btn-primary", extra].filter(Boolean).join(" ");
+---
+<a href={href} class={classes}>{icon && <><i class={`fas ${icon}`} aria-hidden="true"></i>{" "}</>}{label}</a>

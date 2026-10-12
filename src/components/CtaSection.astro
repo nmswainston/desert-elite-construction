@@ -1,0 +1,16 @@
+---
+import type { Cta } from "../data/types";
+import { rich } from "../lib/text";
+import Btn from "./Btn.astro";
+
+const { title, sub, buttons } = Astro.props as Cta;
+---
+<section class="cta-section">
+  <div class="container">
+    <h2 class="cta-section__title reveal" set:html={rich(title)} />
+    <p class="cta-section__sub reveal" set:html={rich(sub)} />
+    <div class="cta-section__row reveal">
+      {buttons.map((button) => <Btn {...button} />)}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,72 @@
+---
+import Btn from "../components/Btn.astro";
+import CtaSection from "../components/CtaSection.astro";
+import PageHero from "../components/PageHero.astro";
+import Picture from "../components/Picture.astro";
+import { services } from "../data/services";
+import { servicesPage } from "../data/servicesPage";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { rich } from "../lib/text";
+
+const withPicture = services.filter((s) => s.image);
+const withoutPicture = services.filter((s) => !s.image);
+---
+<BaseLayout page="services" active="services.html">
+  <PageHero {...servicesPage.hero} variant="services" />
+
+  <section class="section section--dark">
+    <div class="container">
+      {withPicture.map((service, i) => (
+        <div class={i % 2 === 1 ? "service-detail reverse reveal" : "service-detail reveal"} id={service.id}>
+          <div class="service-detail__img">
+            <Picture class="service-detail__photo" use={service.image!} />
+          </div>
+          <div>
+            <span class="eyebrow">{service.eyebrow}</span>
+            <h2 class="service-detail__title">{service.name}</h2>
+            {service.paragraphs.map((text) => <p class="service-detail__text">{text}</p>)}
+            <ul class="service-detail__list">
+              {service.list.map((line) => <li>{line}</li>)}
+            </ul>
+            <Btn label={service.buttonLabel} href="contact.html" icon={service.buttonIcon} class="u-mt-2" />
+          </div>
+        </div>
+      ))}
+
+      {withoutPicture.length > 0 && (
+        <div class="service-pair reveal">
+          {withoutPicture.map((service) => (
+            <div class="service-pair__item" id={service.id}>
+              <span class="eyebrow">{service.eyebrow}</span>
+              <h2 class="service-detail__title">{service.name}</h2>
+              {service.paragraphs.map((text) => <p class="service-detail__text">{text}</p>)}
+              <ul class="service-detail__list">
+                {service.list.map((line) => <li>{line}</li>)}
+              </ul>
+              <Btn label={service.buttonLabel} href="contact.html" icon={service.buttonIcon} class="u-mt-2" />
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <section class="section section--gold">
+    <div class="container">
+      <div class="reveal section-head section-head--wide">
+        <h2 class="section-title" set:html={rich(servicesPage.why.title)} />
+      </div>
+      <div class="feature-grid feature-grid--3 feature-grid--gold reveal">
+        {servicesPage.why.items.map((item) => (
+          <div class="feature-cell">
+            <i class={`fas ${item.icon} feature-cell__icon`} aria-hidden="true"></i>
+            <div class="feature-cell__title">{item.title}</div>
+            <div class="feature-cell__text" set:html={rich(item.text)} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaSection {...servicesPage.cta} />
+</BaseLayout>

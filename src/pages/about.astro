@@ -1,0 +1,74 @@
+---
+import CtaSection from "../components/CtaSection.astro";
+import PageHero from "../components/PageHero.astro";
+import Picture from "../components/Picture.astro";
+import { about } from "../data/about";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { rich } from "../lib/text";
+---
+<BaseLayout page="about" active="about.html">
+  <PageHero {...about.hero} variant="about" />
+
+  <section class="section section--dark">
+    <div class="container">
+      <div class="about-split">
+        <div class="about-img-block reveal">
+          <Picture use={about.story.image} class="about-img" decoding="async" />
+          <div class="about-img-badge">
+            {about.story.badges.map((badge) => (
+              <div class="about-img-badge__stat">
+                <span class="about-img-badge-num">{badge.num}</span>
+                <span class="about-img-badge-label" set:html={rich(badge.label)} />
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="reveal reveal-delay-1">
+          <span class="eyebrow">{about.story.eyebrow}</span>
+          <h2 class="section-title" set:html={rich(about.story.title)} />
+          {about.story.paragraphs.map((text) => <p class="section-sub section-sub--full">{text}</p>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--mid">
+    <div class="container">
+      <div class="reveal section-head">
+        <span class="eyebrow">{about.values.eyebrow}</span>
+        <h2 class="section-title" set:html={rich(about.values.title)} />
+      </div>
+      <div class="values-grid reveal">
+        {about.values.items.map((item) => (
+          <div class="value-card">
+            <div class="value-card__icon"><i class={`fas ${item.icon}`} aria-hidden="true"></i></div>
+            <h3 class="value-card__title">{item.title}</h3>
+            <p class="value-card__text">{item.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container">
+      <div class="reveal section-head">
+        <span class="eyebrow">{about.credentials.eyebrow}</span>
+        <h2 class="section-title" set:html={rich(about.credentials.title)} />
+        <p class="section-sub section-sub--center">{about.credentials.intro}</p>
+      </div>
+
+      <div class="feature-grid feature-grid--3 reveal">
+        {about.credentials.items.map((item) => (
+          <div class="feature-cell">
+            <i class={`fas ${item.icon} feature-cell__icon`} aria-hidden="true"></i>
+            <div class="feature-cell__title">{item.title}</div>
+            <div class="feature-cell__text" set:html={rich(item.text)} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaSection {...about.cta} />
+</BaseLayout>

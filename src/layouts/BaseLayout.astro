@@ -1,0 +1,78 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import { pages } from "../data/pages";
+import { site } from "../data/site";
+import type { PageKey } from "../data/types";
+import { assertContent } from "../lib/checkContent";
+import { resolve, sizeOf } from "../lib/pictures";
+import { structuredData } from "../lib/schema";
+import { relative, webpOf } from "../lib/text";
+
+interface Props {
+  page: PageKey;
+  /** The menu link to highlight, such as "about.html". */
+  active?: string;
+}
+assertContent();
+const { page: key, active } = Astro.props;
+const page = pages[key];
+const address = page.canonical ? `${site.url}${page.canonical}` : undefined;
+const data = structuredData(key);
+const shareSrc = resolve({ picture: site.shareImage }).src;
+const share = await sizeOf(shareSrc);
+const fonts = "https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap";
+const icons = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css";
+const umami = "7accde2a-6961-41e3-bf8d-998eb8f9cc50";
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{page.title}</title>
+  <meta name="description" content={page.description}>
+  {page.robots && <meta name="robots" content={page.robots}>}
+  {address && <link rel="canonical" href={address}>}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  {page.preloadImage && <link rel="preload" as="image" href={relative(webpOf(resolve({ picture: page.preloadImage }).src))} type="image/webp" fetchpriority="high">}
+  <link href={fonts} rel="stylesheet">
+  <link rel="preload" href={icons} as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href={icons}></noscript>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+  {page.social && (
+    <>
+      <meta property="og:type" content="website">
+      <meta property="og:site_name" content={site.name}>
+      <meta property="og:title" content={page.ogTitle ?? page.title}>
+      <meta property="og:description" content={page.ogDescription ?? page.description}>
+      <meta property="og:url" content={address}>
+      <meta property="og:image" content={`${site.url}${shareSrc}`}>
+      <meta property="og:image:width" content={String(share.width)}>
+      <meta property="og:image:height" content={String(share.height)}>
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:title" content={page.twitterTitle ?? page.ogTitle ?? page.title}>
+      <meta name="twitter:description" content={page.twitterDescription ?? page.description}>
+      <meta name="twitter:image" content={`${site.url}${shareSrc}`}>
+    </>
+  )}
+  {data && <script type="application/ld+json" set:html={JSON.stringify(data)} />}
+</head>
+<body>
+  <Header active={active} />
+  <main>
+    <slot />
+  </main>
+  <Footer />
+  <button class="back-to-top" aria-label="Back to top">
+    <i class="fas fa-arrow-up" aria-hidden="true"></i>
+  </button>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id={umami}></script>
+  <script is:inline src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+---
+import Btn from "../components/Btn.astro";
+import CtaSection from "../components/CtaSection.astro";
+import Picture from "../components/Picture.astro";
+import { home } from "../data/home";
+import { serviceCardOrder, services } from "../data/services";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { rich, twoDigits } from "../lib/text";
+
+const cards = serviceCardOrder.flatMap((id) => services.find((s) => s.id === id) ?? []);
+---
+<BaseLayout page="home" active="index.html">
+  <section class="hero">
+    <div class="hero__bg" aria-hidden="true"></div>
+
+    <div class="hero__content">
+      <div class="hero__copy">
+        <h1 class="hero__title">{home.hero.title}</h1>
+        <p class="hero__microcopy">{home.hero.microcopy}</p>
+        <div class="hero__cta-row">
+          {home.hero.buttons.map((button) => <Btn {...button} />)}
+        </div>
+      </div>
+    </div>
+
+    <div class="trust-bar trust-bar--hero">
+      <div class="trust-bar__inner">
+        {home.trust.map((item) => <div class="trust-item"><i class={`fas ${item.icon}`} aria-hidden="true"></i> {item.label}</div>)}
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <i class="fas fa-chevron-down" aria-hidden="true"></i>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container">
+      <div class="reveal">
+        <span class="eyebrow">{home.services.eyebrow}</span>
+        <h2 class="section-title" set:html={rich(home.services.title)} />
+        <p class="section-sub">{home.services.intro}</p>
+      </div>
+    </div>
+
+    <div class="u-mt-3">
+      <div class="services-grid reveal">
+        {cards.map((service, i) => (
+          <div class="service-card">
+            <div class="service-card__number">{twoDigits(i + 1)}</div>
+            <div class="service-card__icon"><i class={`fas ${service.icon}`} aria-hidden="true"></i></div>
+            <h3 class="service-card__title">{service.shortName}</h3>
+            <p class="service-card__text">{service.cardText}</p>
+            {service.homeLink && <a href="services.html" class="service-card__link">{home.services.learnMoreLabel} <i class="fas fa-arrow-right" aria-hidden="true"></i></a>}
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="reveal u-text-center u-mt-3">
+      <Btn {...home.services.button} />
+    </div>
+  </section>
+
+  <section class="stats-section">
+    <div class="container">
+      <div class="reveal section-head section-head--wide">
+        <span class="eyebrow">{home.stats.eyebrow}</span>
+        <h2 class="section-title" set:html={rich(home.stats.title)} />
+      </div>
+
+      <div class="stats-grid">
+        {home.stats.items.map((item, i) => (
+          <div class={i === 0 ? "stat-item reveal" : `stat-item reveal reveal-delay-${i * 2}`}>
+            <span class="stat-number" data-target={item.target}>0</span><span class="stat-suffix">{item.suffix}</span>
+            <span class="stat-label">{item.label}</span>
+          </div>
+        ))}
+      </div>
+
+      <p class="reveal stats-note">{home.stats.note}</p>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container">
+      <div class="reveal section-head--split">
+        <div>
+          <span class="eyebrow">{home.projects.eyebrow}</span>
+          <h2 class="section-title" set:html={rich(home.projects.title)} />
+        </div>
+        <Btn {...home.projects.button} />
+      </div>
+    </div>
+
+    <div class="projects-grid reveal">
+      {home.projects.items.map((item) => (
+        <div class="project-card">
+          <Picture class="project-card__photo" use={item} />
+          <div class="project-card__overlay">
+            <div class="project-card__info">
+              <div class="project-card__name">{item.name}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section section--mid">
+    <div class="container">
+      <div class="reveal section-head">
+        <span class="eyebrow">{home.process.eyebrow}</span>
+        <h2 class="section-title" set:html={rich(home.process.title)} />
+        <p class="section-sub">{home.process.intro}</p>
+      </div>
+    </div>
+    <div class="process-grid reveal">
+      {home.process.steps.map((step, i) => (
+        <div class="process-step">
+          <div class="process-step__num">{twoDigits(i + 1)}</div>
+          <h3 class="process-step__title">{step.title}</h3>
+          <p class="process-step__text">{step.text}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <CtaSection {...home.cta} />
+</BaseLayout>
