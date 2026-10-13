@@ -18,6 +18,7 @@ changes as pull requests from the client's plain English requests. It is built s
 - **Keep data files plain.** Text, numbers, links, lists and field names only. No functions, imports (other than the type import at the top),
   template literals with code, or logic. Computed things belong in `src/lib`.
 - The page's look is `public/css/style.css`. Do not change class names in the pages without checking the stylesheet and `public/js/main.js`.
+- **Keep Caret's settings and test notes out of this repository.** They live in the Caret repository. Caret searches this repository on every request and quotes what it finds to the client, so anything here that repeats the site's wording (test requests, notes) shows up in what the client reads.
 - No em dashes anywhere (code, comments, docs, commit messages, page copy).
 - `npm run build` must pass before a pull request is opened. Compare the built pages with the live site when a change is meant to leave them unchanged.
 
