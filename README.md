@@ -58,4 +58,4 @@ The addresses are the same as before the Astro rebuild: `about.html` is still th
 
 ## Editing with Caret
 
-`caret/site-config.json` and `caret/evals.json` are copies of the registry entry and the test requests that Caret uses (`agent/src/config/sites.ts` and `agent/evals/desert-elite.json` in the Caret repository). **Caret's copy is the one that counts.** Change it there first, then bring these copies in line, so the two never drift apart. Run `npm run check-site -- --site desert-elite` in the Caret repository after a change.
+Caret's settings for this site (what it may edit, its notes, and the test requests used to check it) live in the Caret repository, in `agent/src/config/sites.ts` and `agent/evals/desert-elite.json`, and **not in this repository**. Caret searches this repository when it works on a request and tells the client what it found, so a file here that quotes the site's own words (such as test requests) makes it talk to the client about "internal test notes". Keep Caret's settings and test notes out of here.
