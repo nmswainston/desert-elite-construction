@@ -17,7 +17,7 @@ export const about: About = {
     title: "Local Roots.{br}[[Elite Standards.]]",
     paragraphs: [
       "Desert Elite Homes and Construction was founded on a simple belief: homeowners deserve a contractor who shows up when they say they will, does what they say they'll do, and stands behind every nail driven.",
-      "We've been building and renovating homes across Scottsdale, Cave Creek, Carefree, Phoenix, and the Greater Area for over 38 years. From Scottsdale custom builds to Phoenix kitchen remodels, our crew brings the same level of precision and pride to every project, no matter the size.",
+      "We've been building and renovating homes across Scottsdale, Cave Creek, Carefree, Phoenix, and the Greater Area for over 38 years. From Scottsdale custom builds to Phoenix kitchen remodels, our crew brings the same level of precision and care to every project, no matter the size.",
       "Fully licensed, bonded, and insured in the state of Arizona (ROC: 353956), we operate with complete transparency from the first estimate to the final walkthrough.",
     ],
   },
